@@ -20,7 +20,9 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.web.SecurityFilterChain;
 
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @Configuration
 @EnableMethodSecurity
@@ -42,9 +44,10 @@ public class SecurityConfig {
                                 "/swagger-ui.html",
                                 "/v3/api-docs/**"
                         ).permitAll()
+                    .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/posts", "/api/stream").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/posts").hasAuthority("SCOPE_write:posts")
-                        .requestMatchers(HttpMethod.GET, "/api/me").hasAuthority("SCOPE_read:profile")
+                        .requestMatchers(HttpMethod.GET, "/api/me").authenticated()
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
@@ -73,14 +76,23 @@ public class SecurityConfig {
     public JwtAuthenticationConverter jwtAuthenticationConverter() {
         JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
         converter.setJwtGrantedAuthoritiesConverter(jwt -> {
+            Set<GrantedAuthority> authorities = new LinkedHashSet<>();
+
             String scope = jwt.getClaimAsString("scope");
-            if (scope == null || scope.isBlank()) {
-                return List.of();
+            if (scope != null && !scope.isBlank()) {
+                Arrays.stream(scope.split(" "))
+                        .map(s -> (GrantedAuthority) new SimpleGrantedAuthority("SCOPE_" + s))
+                        .forEach(authorities::add);
             }
 
-            return Arrays.stream(scope.split(" "))
-                    .map(s -> (GrantedAuthority) new SimpleGrantedAuthority("SCOPE_" + s))
-                    .toList();
+            List<String> permissions = jwt.getClaimAsStringList("permissions");
+            if (permissions != null) {
+                permissions.stream()
+                        .map(permission -> (GrantedAuthority) new SimpleGrantedAuthority("SCOPE_" + permission))
+                        .forEach(authorities::add);
+            }
+
+            return List.copyOf(authorities);
         });
         return converter;
     }

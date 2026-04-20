@@ -1,39 +1,44 @@
 package co.edu.escuelaing.twitter_application_monolith.dto;
 
-import java.util.List;
+public class Auth0UserInfoResponse {
 
-public class MeResponse {
     private String sub;
     private String name;
     private String email;
     private String picture;
-    private List<String> scopes;
 
-    public MeResponse(String sub, String name, String email, String picture, List<String> scopes) {
-        this.sub = sub;
-        this.name = name;
-        this.email = email;
-        this.picture = picture;
-        this.scopes = scopes;
+    public Auth0UserInfoResponse() {
     }
 
     public String getSub() {
         return sub;
     }
 
+    public void setSub(String sub) {
+        this.sub = sub;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPicture() {
         return picture;
     }
 
-    public List<String> getScopes() {
-        return scopes;
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }

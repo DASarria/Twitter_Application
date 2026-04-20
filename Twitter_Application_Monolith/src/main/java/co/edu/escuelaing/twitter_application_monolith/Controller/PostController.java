@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,7 +40,10 @@ public class PostController {
             security = @SecurityRequirement(name = "bearerAuth")
     )
     @PostMapping("/posts")
-    public ResponseEntity<PostResponse> createPost(@Valid @RequestBody CreatePostRequest request, Jwt jwt) {
+        public ResponseEntity<PostResponse> createPost(
+            @Valid @RequestBody CreatePostRequest request,
+            @AuthenticationPrincipal Jwt jwt
+        ) {
         String authorSub = jwt.getSubject();
         String authorName = jwt.getClaimAsString("name");
         if (authorName == null || authorName.isBlank()) {
