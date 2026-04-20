@@ -2,6 +2,8 @@ package co.edu.escuelaing.twitter_application_monolith.Controller;
 
 import co.edu.escuelaing.twitter_application_monolith.Entity.Post;
 import co.edu.escuelaing.twitter_application_monolith.Service.PostService;
+import co.edu.escuelaing.twitter_application_monolith.Service.Auth0UserInfoService;
+import co.edu.escuelaing.twitter_application_monolith.dto.Auth0UserInfoResponse;
 import co.edu.escuelaing.twitter_application_monolith.dto.CreatePostRequest;
 import co.edu.escuelaing.twitter_application_monolith.dto.PostResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,9 +26,11 @@ import java.util.List;
 public class PostController {
 
     private final PostService postService;
+    private final Auth0UserInfoService auth0UserInfoService;
 
-    public PostController(PostService postService) {
+    public PostController(PostService postService, Auth0UserInfoService auth0UserInfoService) {
         this.postService = postService;
+        this.auth0UserInfoService = auth0UserInfoService;
     }
 
     @Operation(summary = "Get public stream of posts")
@@ -44,8 +48,10 @@ public class PostController {
             @Valid @RequestBody CreatePostRequest request,
             @AuthenticationPrincipal Jwt jwt
         ) {
-        String authorSub = jwt.getSubject();
-        String authorName = jwt.getClaimAsString("name");
+
+        Auth0UserInfoResponse profile = auth0UserInfoService.fetchUserInfo(jwt.getTokenValue());
+        String authorSub = profile.getSub() != null ? profile.getSub() : jwt.getSubject();
+        String authorName = profile.getName() != null ? profile.getName() : jwt.getClaimAsString("name");
         if (authorName == null || authorName.isBlank()) {
             authorName = jwt.getClaimAsString("nickname");
         }

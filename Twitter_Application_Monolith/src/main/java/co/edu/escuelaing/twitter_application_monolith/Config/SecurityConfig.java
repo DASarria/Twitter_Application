@@ -46,7 +46,7 @@ public class SecurityConfig {
                         ).permitAll()
                     .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/posts", "/api/stream").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/posts").hasAuthority("SCOPE_write:posts")
+                        .requestMatchers(HttpMethod.POST, "/api/posts").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/me").authenticated()
                         .anyRequest().authenticated()
                 )
