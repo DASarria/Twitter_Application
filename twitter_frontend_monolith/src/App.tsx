@@ -27,7 +27,6 @@ function App() {
     isLoading,
     user,
     error: auth0Error,
-    loginWithRedirect,
     loginWithPopup,
     logout,
     getAccessTokenSilently,
@@ -154,27 +153,10 @@ function App() {
   return (
     <div className="app-shell">
       <header className="topbar">
-        <div>
-          <p className="eyebrow">Secure Twitter Monolith</p>
-          <h1>Public Stream</h1>
-        </div>
 
         <div className="auth-buttons">
           {!isAuthenticated && (
             <>
-              <button
-                onClick={() =>
-                  void loginWithRedirect({
-                    authorizationParams: {
-                      audience,
-                      scope: defaultScope,
-                    },
-                  })
-                }
-                className="button button-ghost"
-              >
-                Login with redirect
-              </button>
               <button
                 onClick={() =>
                   void loginWithPopup({
@@ -210,28 +192,27 @@ function App() {
 
       <main className="content-grid">
         <section className="panel panel-post">
-          <h2>Create Post</h2>
+          <h2>Crear Post</h2>
           {!isAuthenticated && (
             <p className="muted">
-              You need to authenticate with Auth0 to publish new posts.
+              Necesita estar autenticado para publicar nuevos mensajes.
             </p>
           )}
 
           {isAuthenticated && (
             <>
               <label htmlFor="post-content" className="label">
-                Write up to 140 characters
               </label>
               <textarea
                 id="post-content"
                 maxLength={220}
                 value={postDraft}
                 onChange={(event) => setPostDraft(event.target.value)}
-                placeholder="What is happening right now?"
+                placeholder="¿Qué está pasando?"
               />
               <div className="composer-footer">
                 <span className={remainingChars < 0 ? 'counter over' : 'counter'}>
-                  {remainingChars} chars left
+                  {remainingChars} Caracteres restantes
                 </span>
                 <button
                   className="button button-primary"
@@ -254,17 +235,15 @@ function App() {
 
           {myProfile && (
             <div className="profile-box">
-              <p><strong>sub:</strong> {myProfile.sub}</p>
               <p><strong>name:</strong> {myProfile.name ?? '-'}</p>
               <p><strong>email:</strong> {myProfile.email ?? '-'}</p>
-              <p><strong>scopes:</strong> {myProfile.scopes.join(', ') || '-'}</p>
             </div>
           )}
         </section>
 
         <section className="panel panel-feed">
           <div className="feed-header">
-            <h2>Global Feed</h2>
+            <h2>Posts globales</h2>
             <button
               className="button button-ghost"
               onClick={() => {
@@ -287,7 +266,7 @@ function App() {
 
           <ul className="feed-list">
             {posts.map((post) => (
-              <li key={post.id} className="post-card">
+              <li key={post.id} className="post-card overflow-hidden">
                 <div className="post-head">
                   <strong>{post.authorName}</strong>
                   <time dateTime={post.createdAt}>
@@ -295,7 +274,6 @@ function App() {
                   </time>
                 </div>
                 <p>{post.content}</p>
-                <small>{post.authorSub}</small>
               </li>
             ))}
           </ul>
@@ -303,7 +281,6 @@ function App() {
       </main>
 
       <footer className="footnote">
-        <span>API base URL: {apiBaseUrl}</span>
         <span>User: {user?.name ?? 'anonymous'}</span>
       </footer>
     </div>

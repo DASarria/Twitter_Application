@@ -1,15 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --ink: #11203d;
-  --ink-soft: #55617a;
-  --paper: #fdfbf6;
-  --line: #d8d7d2;
-  --line-strong: #b8becb;
-  --accent: #ea5a0c;
-  --accent-soft: #fff2e7;
-  --panel-shadow: 0 14px 34px rgba(17, 32, 61, 0.08);
-  font-family: 'IBM Plex Sans', sans-serif;
+  --ink: #0f1419;
+  --ink-soft: #536471;
+  --paper: #ffffff;
+  --paper-muted: #f7f9f9;
+  --line: #eff3f4;
+  --line-strong: #cfd9de;
+  --accent: #1d9bf0;
+  --accent-strong: #0a84d8;
+  --accent-soft: #e8f5fe;
+  --danger: #f4212e;
+  --panel-shadow: 0 8px 20px rgba(15, 20, 25, 0.06);
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: var(--ink);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,24 +27,36 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(circle at 8% 14%, rgba(234, 90, 12, 0.12), transparent 35%),
-    radial-gradient(circle at 92% 84%, rgba(5, 140, 120, 0.14), transparent 35%),
-    linear-gradient(180deg, #f7f1e6 0%, #eff6fb 100%);
+  background: linear-gradient(180deg, #f5f8fa 0%, #edf3f8 100%);
 }
 
 #root {
-  max-width: 1140px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
 h1,
 h2,
 h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  line-height: 1.08;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  line-height: 1.2;
 }
 
 p {
   margin: 0;
+}
+.post-card p {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.post-head strong {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.post-card {
+  overflow: hidden;
 }
