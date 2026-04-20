@@ -1,0 +1,6 @@
+co\edu\escuelaing\twitter\userservice\MeResponse.class
+co\edu\escuelaing\twitter\userservice\AuthContext.class
+co\edu\escuelaing\twitter\userservice\GetMeHandler.class
+co\edu\escuelaing\twitter\userservice\ApiResponse.class
+co\edu\escuelaing\twitter\userservice\JsonSupport.class
+co\edu\escuelaing\twitter\userservice\AuthClaimsExtractor.class

@@ -1,0 +1,5 @@
+co\edu\escuelaing\twitter\streamservice\ApiResponse.class
+co\edu\escuelaing\twitter\streamservice\JsonSupport.class
+co\edu\escuelaing\twitter\streamservice\GetStreamHandler.class
+co\edu\escuelaing\twitter\streamservice\PostsRepository.class
+co\edu\escuelaing\twitter\streamservice\Post.class

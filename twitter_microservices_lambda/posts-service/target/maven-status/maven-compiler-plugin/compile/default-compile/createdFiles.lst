@@ -1,0 +1,7 @@
+co\edu\escuelaing\twitter\postsservice\CreatePostRequest.class
+co\edu\escuelaing\twitter\postsservice\JsonSupport.class
+co\edu\escuelaing\twitter\postsservice\CreatePostHandler.class
+co\edu\escuelaing\twitter\postsservice\Post.class
+co\edu\escuelaing\twitter\postsservice\ApiResponse.class
+co\edu\escuelaing\twitter\postsservice\AuthClaimsExtractor.class
+co\edu\escuelaing\twitter\postsservice\PostsRepository.class
