@@ -261,6 +261,7 @@ The following validations were performed and/or demonstrated during deployment:
 
 ![DynamoDB table creation](assets/11-DynamoDBCreacion.png)
 
-## Live Link
+## LinkS
 
 - Frontend demo: [https://twitter-application-sd.onrender.com](https://twitter-application-sd.onrender.com)
+- Video: https://pruebacorreoescuelaingeduco-my.sharepoint.com/:v:/g/personal/david_villadiego-m_mail_escuelaing_edu_co/IQAG7tz9peiAQ4Wjhkvzl1BhAcgLZ3a2PDt7oA4IXEIgVGY?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=ZqMBBD
