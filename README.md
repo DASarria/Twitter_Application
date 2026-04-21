@@ -8,6 +8,12 @@ This repository contains a simplified Twitter-like application built in three st
 
 The application lets authenticated users create short posts of up to 140 characters and read a single public stream/feed.
 
+## Team Members
+
+- David Sarria
+- Vicente Garzon
+- David Villadiego
+
 ## Final Architecture
 
 ```mermaid
