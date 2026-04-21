@@ -227,6 +227,10 @@ The following validations were performed and/or demonstrated during deployment:
 
 ![Final CloudFront distribution](assets/7-CreacionFinalDelCloudFront.png)
 
+![HTTP vs HTTPS deployment issue](assets/10-ErrorHTTP-HTTPS.png)
+
+During deployment we found an infrastructure limitation: the frontend could not be reliably left on plain S3 website hosting because Auth0 SPA flows require a secure origin (HTTPS) in production. The S3 static website endpoint is HTTP-only, so Auth0 rejects the app in that scenario. The correct solution is to place CloudFront in front of S3 to provide HTTPS, but that step was initially blocked by IAM permissions in AWS (insufficient permissions to create/configure the distribution). In short, the issue was not the frontend code, but missing cloud permissions plus the HTTPS requirement enforced by Auth0. Therefore, the frontend was finally deployed on Render.
+
 ### Serverless Back-End
 
 ![Lambda functions](assets/21-LambdaFunctions.png)
