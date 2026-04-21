@@ -11,7 +11,6 @@ The application lets authenticated users create short posts of up to 140 charact
 ## Team Members
 
 - David Sarria
-- Vicente Garzon
 - David Villadiego
 
 ## Final Architecture
